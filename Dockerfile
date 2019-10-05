@@ -1,2 +1,2 @@
-FROM gcr.io/google_containers/ubuntu-slim:0.14
+FROM gcr.io/google_containers/hyperkube:v1.11.1
 MAINTAINER miiw
