@@ -42,7 +42,7 @@ jobs:
                 new_image_tag=$(echo "$IMAGE" | cut -d'/' -f$idx- | sed 's/-/_/g' | sed 's/\//_/g' | sed 's/:/_/g')
                 docker tag $IMAGE $DOAMIN/$NAMESPACE/$REPO:$new_image_tag
                 # echo "docker tag $IMAGE $DOAMIN/$NAMESPACE/$REPO:$new_image_tag"
-                docker push $new_image_tag
+                docker push $DOAMIN/$NAMESPACE/$REPO:$new_image_tag
                 # echo "docker push $new_image_tag"
             done
         done
