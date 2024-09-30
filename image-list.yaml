@@ -4,6 +4,7 @@ docker-mirror:
   - name: centos:7
   - name: diygod/rsshub:latest
   - name: pasteme/frontend:3.4.2
+  - name: pasteme/go-backend:3.5.2
   - name: wangqiru/ttrss:latest
 gcr-mirror:
   repo: gcr_mirror
