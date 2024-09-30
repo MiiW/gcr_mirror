@@ -1,0 +1,8 @@
+docker-mirror:
+  repo: mirror
+  images:
+  - name: centos:7
+gcr-mirror:
+  repo: gcr_mirror
+  images:
+  - name: gcr.io/google_containers/pause-amd64:3.1
