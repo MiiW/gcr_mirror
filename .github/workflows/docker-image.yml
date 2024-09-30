@@ -17,6 +17,8 @@ jobs:
     - name: Pull & Push the Docker image
       run: |
         #!/bin/bash
+        set -x
+        
         YAML_FILE=image-list.yaml
         DOAMIN=registry.cn-hangzhou.aliyuncs.com
         NAMESPACE=miiw
