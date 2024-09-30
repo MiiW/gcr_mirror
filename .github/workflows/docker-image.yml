@@ -1,0 +1,48 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "ubuntu-slim/0.14" ]
+  pull_request:
+    branches: [ "ubuntu-slim/0.14" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login Docker Repo
+      run: |
+        echo ${{ secrets.CR_PASSWORD }} | docker login --username=${{ secrets.CR_USERNAME }} registry.cn-hangzhou.aliyuncs.com --password-stdin
+    - name: Pull & Push the Docker image
+      run: |
+        #!/bin/bash
+        YAML_FILE=image-list.yaml
+        DOAMIN=registry.cn-hangzhou.aliyuncs.com
+        NAMESPACE=miiw
+        
+        MIRROR_ENTRIES=$(yq eval '. | keys | .[]' "$YAML_FILE")
+        
+        for ENTRY in $MIRROR_ENTRIES; do
+            REPO=$(yq eval ".${ENTRY}.repo" "$YAML_FILE")
+            IMAGES=$(yq eval ".${ENTRY}.images[] | .name" "$YAML_FILE")
+        
+            for IMAGE in $IMAGES; do
+                # echo "docker pull $IMAGE"
+                docker pull $IMAGE
+                size=$(echo $IMAGE |  grep -o '/' | wc -l )
+                if (( $(echo "${size} <= 1" | bc -l) )); then
+                    idx=1
+                else
+                    idx=2
+                fi
+                
+                new_image_tag=$(echo "$IMAGE" | cut -d'/' -f$idx- | sed 's/-/_/g' | sed 's/\//_/g' | sed 's/:/_/g')
+                docker tag $IMAGE $DOAMIN/$NAMESPACE/$REPO:$new_image_tag
+                # echo "docker tag $IMAGE $DOAMIN/$NAMESPACE/$REPO:$new_image_tag"
+                docker push $new_image_tag
+                # echo "docker push $new_image_tag"
+            done
+        done
+        
+        echo "All images have been mirrored."
