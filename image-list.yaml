@@ -2,6 +2,9 @@ docker-mirror:
   repo: mirror
   images:
   - name: centos:7
+  - name: diygod/rsshub:latest
+  - name: pasteme/frontend:3.4.2
+  - name: wangqiru/ttrss:latest
 gcr-mirror:
   repo: gcr_mirror
   images:
