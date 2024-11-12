@@ -1,6 +1,7 @@
 docker-mirror:
   repo: mirror
   images:
+  - name: adguard/adguardhome:latest
   - name: centos:7
   - name: diygod/rsshub:latest
   - name: pasteme/frontend:3.4.2
