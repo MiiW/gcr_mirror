@@ -1,6 +1,7 @@
 docker-mirror:
   repo: mirror
   images:
+  - name: opengrok/docker:1.13
   - name: adguard/adguardhome:latest
   - name: centos:7
   - name: diygod/rsshub:latest
