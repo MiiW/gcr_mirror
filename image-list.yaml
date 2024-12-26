@@ -1,6 +1,7 @@
 docker-mirror:
   repo: mirror
   images:
+  - name: grafana/grafana:10.0.0
   - name: opengrok/docker:1.13
   - name: adguard/adguardhome:latest
   - name: centos:7
