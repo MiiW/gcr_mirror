@@ -1,6 +1,7 @@
 docker-mirror:
   repo: mirror
   images:
+  - name: vaultwarden/server:1.28.1
   - name: rancher/klipper-lb:v0.4.5
   - name: adguard/adguardhome:v0.107.53
   - name: grafana/grafana:11.4.0
