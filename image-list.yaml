@@ -1,6 +1,7 @@
 docker-mirror:
   repo: mirror
   images:
+  - name: rmqtt/rmqtt-bench:latest
   - name: rmqtt/rmqtt:latest
   - name: diygod/rsshub:2025-03-07
   - name: vaultwarden/server:1.28.1
