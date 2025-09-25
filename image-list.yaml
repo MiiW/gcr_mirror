@@ -1,6 +1,7 @@
 docker-mirror:
   repo: mirror
   images:
+  - name: grafana/grafana:10.0.0-ubuntu
   - name: rmqtt/rmqtt-bench:latest
   - name: rmqtt/rmqtt:latest
   - name: diygod/rsshub:2025-03-07
